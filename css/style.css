@@ -1,0 +1,144 @@
+:root {
+    --primary-color: #333;
+    --bg-color: #f9f9f9;
+    --accent-color: #d4af37;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+header {
+    background-color: #fff;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo { font-size: 24px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+.search-bar { padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
+.cart-info { font-weight: 600; }
+
+.container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+.section-title { text-align: center; margin-bottom: 40px; font-weight: 400; font-size: 28px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+
+.card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    /* Ajuste de imagem: Deixa as cores e luzes mais suaves para destacar o aspecto premium da prata */
+    filter: contrast(0.95) saturate(0.85);
+}
+
+.product-name { font-size: 16px; margin: 10px 0; color: #555; }
+.price { font-size: 20px; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; }
+
+.btn-comprar {
+    background-color: var(--primary-color);
+    color: #fff; border: none; padding: 10px 20px; width: 100%;
+    border-radius: 4px; cursor: pointer; font-weight: 600; transition: background 0.3s;
+}
+.btn-comprar:hover { background-color: var(--accent-color); }
+
+/* Botão de Visualização */
+.btn-visualizar {
+    position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8); color: #fff; border: none;
+    padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 14px;
+    opacity: 0; visibility: hidden; transition: 0.3s ease; z-index: 2; white-space: nowrap;
+}
+.card:hover .btn-visualizar { opacity: 1; visibility: visible; }
+.btn-visualizar:hover { background-color: var(--accent-color); }
+
+/* --- Estilos da Gaveta do Carrinho (Sidebar) --- */
+.cart-sidebar {
+    position: fixed; top: 0; right: -400px; /* Começa escondida fora da tela */
+    width: 350px; height: 100vh; background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100;
+    transition: right 0.3s ease-in-out;
+    display: flex; flex-direction: column;
+}
+
+/* Classe que o JS vai adicionar para a gaveta aparecer */
+.cart-sidebar.open { right: 0; }
+
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5); z-index: 99;
+    visibility: hidden; opacity: 0; transition: 0.3s ease;
+}
+
+.cart-overlay.open { visibility: visible; opacity: 1; }
+
+.cart-sidebar-header {
+    padding: 20px; border-bottom: 1px solid #eaeaea;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.cart-sidebar-header h2 { margin: 0; font-size: 20px; font-weight: 400; }
+
+.cart-items { padding: 20px; flex-grow: 1; overflow-y: auto; }
+
+.cart-item {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px;
+}
+.cart-item-info h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--primary-color); }
+.cart-item-price { color: var(--accent-color); font-weight: 600; font-size: 14px; }
+.btn-remover { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 12px; font-weight: bold; }
+.btn-remover:hover { text-decoration: underline; }
+
+.cart-sidebar-footer { padding: 20px; border-top: 1px solid #eaeaea; background: #f9f9f9; }
+.cart-summary-total { font-size: 18px; font-weight: 600; margin-bottom: 15px; text-align: right; }
+
+/* Modal Styles */
+.modal {
+    display: none; position: fixed; z-index: 10; left: 0; top: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: #fefefe; margin: 10% auto; padding: 30px;
+    border-radius: 8px; width: 80%; max-width: 500px; text-align: center;
+    position: relative; animation: fadeIn 0.3s;
+}
+.modal-content img { max-width: 100%; border-radius: 8px; margin-bottom: 20px; }
+.close-btn {
+    position: absolute; top: 10px; right: 20px; color: #aaa;
+    font-size: 28px; font-weight: bold; cursor: pointer;
+}
+.close-btn:hover { color: #000; }
+
+@keyframes fadeIn { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+
+/* Toast (Notificação) */
+.toast {
+    visibility: hidden; min-width: 250px; background-color: var(--accent-color);
+    color: #fff; text-align: center; border-radius: 4px; padding: 16px;
+    position: fixed; z-index: 20; right: 30px; bottom: 30px; font-weight: 600;
+}
+.toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }

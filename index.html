@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Joias | Atacado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Sua Marca</div>
+        <input type="text" class="search-bar" placeholder="Buscar joias...">
+        <div class="cart-info" onclick="openCart()" style="cursor: pointer; transition: color 0.3s;">
+            🛒 Carrinho (<span id="cartCount">0</span>) | R$ <span id="cartTotal">0,00</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Lançamentos em Prata 925</h2>
+
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.tcdn.com.br/img/img_prod/1041603/anel_solitario_cravejado_prata_925_3140_1_7193653f2367ae2c0ae6642c6259256c.jpg" alt="Anel Solitário">
+                <button class="btn-visualizar" onclick="openModal('Anel Solitário Cravejado', 89.90, 'https://images.unsplash.com/photo-1605100804763-247f67b2548e?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
+                <h3 class="product-name">Anel Solitário Cravejado</h3>
+                <div class="price">R$ 89,90</div>
+                <button class="btn-comprar" onclick="addToCart('Anel Solitário Cravejado', 89.90)">Comprar</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" alt="Brinco Argola">
+                <button class="btn-visualizar" onclick="openModal('Brinco Argola Lisa', 45.00, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
+                <h3 class="product-name">Brinco Argola Lisa</h3>
+                <div class="price">R$ 45,00</div>
+                <button class="btn-comprar" onclick="addToCart('Brinco Argola Lisa', 45.00)">Comprar</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Colar Ponto de Luz">
+                <button class="btn-visualizar" onclick="openModal('Colar Ponto de Luz', 110.50, 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
+                <h3 class="product-name">Colar Ponto de Luz</h3>
+                <div class="price">R$ 110,50</div>
+                <button class="btn-comprar" onclick="addToCart('Colar Ponto de Luz', 110.50)">Comprar</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Pulseira Riviera">
+                <button class="btn-visualizar" onclick="openModal('Pulseira Riviera Prata', 199.90, 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
+                <h3 class="product-name">Pulseira Riviera Prata</h3>
+                <div class="price">R$ 199,90</div>
+                <button class="btn-comprar" onclick="addToCart('Pulseira Riviera Prata', 199.90)">Comprar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImg" src="" alt="Produto em Destaque">
+            <h3 id="modalTitle" class="product-name"></h3>
+            <div id="modalPrice" class="price"></div>
+            <button class="btn-comprar" id="modalBtnComprar">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Item adicionado com sucesso!</div>
+
+    <script src="js/script.js"></script>
+
+    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2>Seu Carrinho</h2>
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+        </div>
+
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align: center; color: #888; margin-top: 20px;">Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="cart-sidebar-footer">
+            <div class="cart-summary-total">Total: R$ <span id="sidebarTotal">0,00</span></div>
+            <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
+        </div>
+    </div>
+</body>
+</html>
