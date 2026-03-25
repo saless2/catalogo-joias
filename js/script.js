@@ -126,7 +126,27 @@ function finalizePurchase() {
         alert("Seu carrinho está vazio! Adicione algumas joias primeiro.");
         return;
     }
-    alert(`Redirecionando para o pagamento seguro...\nValor total a pagar: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`);
+
+    // 1. Coloque aqui o número do WhatsApp da loja (com DDI 55 e DDD)
+    const numeroWhatsApp = "5511999999999";
+
+    // 2. Começa a montar a mensagem de saudação
+    let mensagem = "Olá, Rei da Prata! Gostaria de finalizar o meu pedido de atacado:\n\n";
+
+    // 3. Faz um loop no carrinho e adiciona cada item na mensagem
+    cartItems.forEach(item => {
+        let subtotalItem = item.price * item.qty;
+        mensagem += `▪️ ${item.qty}x ${item.name} - R$ ${subtotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\n`;
+    });
+
+    // 4. Adiciona o valor total no final, em negrito (usando os asteriscos do WhatsApp)
+    mensagem += `\n*Valor Total do Pedido: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*`;
+
+    // 5. Transforma o texto em um link válido para a internet e abre o WhatsApp
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+
+    // 6. Esvazia o carrinho e fecha a gaveta depois de enviar o cliente pro WhatsApp
     cartItems = [];
     updateCart();
     closeCart();

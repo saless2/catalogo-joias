@@ -1,7 +1,13 @@
+/* ==========================================
+   PALETA DE CORES REI DA PRATA (DARK MODE LUXO)
+   ========================================== */
 :root {
-    --primary-color: #333;
-    --bg-color: #f9f9f9;
-    --accent-color: #d4af37;
+    --primary-color: #F0F0F0; /* ATENÇÃO: Agora a cor principal (textos) é clara */
+    --accent-color: #C8A153;  /* Dourado Premium */
+    --bg-color: #1A1A1A;      /* Fundo do site Mármore Escuro */
+    --text-light: #F0F0F0;    /* Prata/Branco para textos */
+    --card-bg: #2A2A2A;       /* Fundo do card ligeiramente mais claro que o fundo do site */
+    --card-border: #444444;   /* Borda sutil para os cards */
 }
 
 body {
@@ -12,195 +18,169 @@ body {
     color: var(--primary-color);
 }
 
+/* ==========================================
+   CABEÇALHO (HEADER)
+   ========================================== */
 header {
-    background-color: #fff;
-    padding: 20px 50px;
+    background-color: var(--bg-color); /* Fundo igual ao resto do site para fundir a logo */
+    padding: 15px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eaeaea;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-bottom: 3px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-.logo { font-size: 24px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-.search-bar { padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
-.cart-info { font-weight: 600; }
+header .logo-link { display: flex; align-items: center; text-decoration: none; }
+header .header-logo { height: 80px; width: auto; object-fit: contain; border-radius: 4px; }
 
-.container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-.section-title { text-align: center; margin-bottom: 40px; font-weight: 400; font-size: 28px; }
-
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
-
-.card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #f0f0f0;
-    position: relative;
-}
-
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-
-.card img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    /* Ajuste de imagem: Deixa as cores e luzes mais suaves para destacar o aspecto premium da prata */
-    filter: contrast(0.95) saturate(0.85);
-}
-
-.product-name { font-size: 16px; margin: 10px 0; color: #555; }
-.price { font-size: 20px; font-weight: 600; color: var(--primary-color); margin-bottom: 15px; }
-
-.btn-comprar {
-    background-color: var(--primary-color);
-    color: #fff; border: none; padding: 10px 20px; width: 100%;
-    border-radius: 4px; cursor: pointer; font-weight: 600; transition: background 0.3s;
-}
-.btn-comprar:hover { background-color: var(--accent-color); }
-
-/* Botão de Visualização */
-.btn-visualizar {
-    position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8); color: #fff; border: none;
-    padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 14px;
-    opacity: 0; visibility: hidden; transition: 0.3s ease; z-index: 2; white-space: nowrap;
-}
-.card:hover .btn-visualizar { opacity: 1; visibility: visible; }
-.btn-visualizar:hover { background-color: var(--accent-color); }
-
-/* --- Estilos da Gaveta do Carrinho (Sidebar) --- */
-.cart-sidebar {
-    position: fixed; top: 0; right: -400px; /* Começa escondida fora da tela */
-    width: 350px; height: 100vh; background-color: #fff;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 100;
-    transition: right 0.3s ease-in-out;
-    display: flex; flex-direction: column;
-}
-
-/* Classe que o JS vai adicionar para a gaveta aparecer */
-.cart-sidebar.open { right: 0; }
-
-.cart-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5); z-index: 99;
-    visibility: hidden; opacity: 0; transition: 0.3s ease;
-}
-
-.cart-overlay.open { visibility: visible; opacity: 1; }
-
-.cart-sidebar-header {
-    padding: 20px; border-bottom: 1px solid #eaeaea;
-    display: flex; justify-content: space-between; align-items: center;
-}
-.cart-sidebar-header h2 { margin: 0; font-size: 20px; font-weight: 400; }
-
-.cart-items { padding: 20px; flex-grow: 1; overflow-y: auto; }
-
-.cart-item {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px;
-}
-.cart-item-info h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--primary-color); }
-.cart-item-price { color: var(--accent-color); font-weight: 600; font-size: 14px; }
-.btn-remover { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 12px; font-weight: bold; }
-.btn-remover:hover { text-decoration: underline; }
-
-.cart-sidebar-footer { padding: 20px; border-top: 1px solid #eaeaea; background: #f9f9f9; }
-.cart-summary-total { font-size: 18px; font-weight: 600; margin-bottom: 15px; text-align: right; }
-
-/* --- Navegação no Header --- */
 .top-nav { display: flex; gap: 20px; }
-.top-nav a { text-decoration: none; color: var(--primary-color); font-weight: 600; font-size: 14px; transition: 0.2s; }
+.top-nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+}
 .top-nav a:hover { color: var(--accent-color); }
 
-/* --- Seção de Filtros (Pílulas) --- */
+.cart-info { color: var(--accent-color); font-weight: 600; }
+
+/* ==========================================
+   ELEMENTOS GERAIS (PESQUISA E PÍLULAS)
+   ========================================== */
+.search-container { width: 100%; max-width: 600px; }
+.search-container .search-bar {
+    width: 100%; box-sizing: border-box; padding: 12px 20px; border-radius: 30px;
+    border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-light);
+    font-family: 'Montserrat', sans-serif; outline: none; transition: box-shadow 0.3s;
+}
+.search-container .search-bar::placeholder { color: #888; }
+.search-container .search-bar:focus { box-shadow: 0 0 10px rgba(200, 161, 83, 0.3); border-color: var(--accent-color); }
+
 .filter-section { max-width: 1200px; margin: 20px auto; padding: 0 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
 
-.search-container { width: 100%; max-width: 600px; }
-.search-container .search-bar { width: 100%; box-sizing: border-box; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; background: #fff; font-family: 'Montserrat', sans-serif; outline: none; transition: box-shadow 0.3s; }
-.search-container .search-bar:focus { box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-
 .filter-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
-
 .filter-btn {
-    background-color: #fff; border: 1px solid #eaeaea; color: #333;
+    background-color: transparent; border: 1px solid var(--text-light); color: var(--text-light);
     padding: 10px 20px; border-radius: 30px; cursor: pointer;
     font-size: 13px; font-weight: 600; transition: all 0.2s ease;
     text-transform: uppercase; font-family: 'Montserrat', sans-serif;
 }
+.filter-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+.filter-btn.active { border-color: var(--accent-color); background-color: var(--accent-color); color: #111; }
 
-.filter-btn:hover { border-color: #aaa; }
+/* ==========================================
+   GRADE DE PRODUTOS E CARDS
+   ========================================== */
+.container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+.section-title { text-align: center; margin-bottom: 40px; font-weight: 400; font-size: 28px; color: var(--text-light); }
 
-/* Visual da pílula selecionada (igual ao print da sua imagem) */
-.filter-btn.active {
-    border-color: #000; outline: 1px solid #000; color: #000;
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+
+.card {
+    background: var(--card-bg); padding: 20px; border-radius: 8px; text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--card-border);
+    position: relative;
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); border-color: var(--accent-color); }
+.card img {
+    max-width: 100%; height: 200px; object-fit: cover; margin-bottom: 15px;
+    border-radius: 4px; filter: contrast(1.05) saturate(0.9); /* Ajuste leve para fundo escuro */
 }
 
-/* --- Banner Rotativo (Carrossel) --- */
+.product-name { font-size: 16px; margin: 10px 0; color: #ddd; }
+.price { font-size: 20px; font-weight: 600; color: var(--accent-color); margin-bottom: 15px; } /* Preço em dourado para destacar */
+
+/* Botões do Produto */
+.btn-comprar {
+    background-color: transparent; color: var(--accent-color); border: 2px solid var(--accent-color);
+    padding: 10px 20px; width: 100%; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.3s;
+}
+.btn-comprar:hover { background-color: var(--accent-color); color: #111; }
+
+.btn-visualizar {
+    position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+    background-color: rgba(200, 161, 83, 0.9); /* Fundo Dourado semi-transparente */
+    color: #111; border: none; padding: 10px 15px;
+    border-radius: 4px; cursor: pointer; font-size: 14px; opacity: 0; visibility: hidden;
+    transition: 0.3s ease; z-index: 2; white-space: nowrap; font-weight: bold;
+}
+.card:hover .btn-visualizar { opacity: 1; visibility: visible; }
+.btn-visualizar:hover { background-color: #fff; }
+
+/* ==========================================
+   CARROSSEL E WHATSAPP
+   ========================================== */
 .carousel-container {
-    max-width: 1200px; margin: 20px auto; position: relative;
-    border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 1200px; margin: 20px auto; position: relative; border-radius: 8px;
+    overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid var(--card-border);
 }
 .carousel-slide { display: none; position: relative; }
 .carousel-slide.active { display: block; animation: fade 1s; }
-.carousel-slide img { width: 100%; height: 350px; object-fit: cover; display: block; filter: brightness(0.8); }
+.carousel-slide img { width: 100%; height: 350px; object-fit: cover; display: block; filter: brightness(0.7); }
 .carousel-text {
-    position: absolute; bottom: 40px; left: 40px; color: #fff;
-    font-size: 28px; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    position: absolute; bottom: 40px; left: 40px; color: var(--accent-color); font-size: 28px;
+    font-weight: 600; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 .prev, .next {
-    cursor: pointer; position: absolute; top: 50%; width: auto;
-    padding: 16px; margin-top: -22px; color: white; font-weight: bold;
-    font-size: 18px; transition: 0.6s ease; border-radius: 0 3px 3px 0;
-    user-select: none; background-color: rgba(0,0,0,0.3);
+    cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
+    margin-top: -22px; color: var(--accent-color); font-weight: bold; font-size: 18px;
+    transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none;
+    background-color: rgba(0,0,0,0.5);
 }
 .next { right: 0; border-radius: 3px 0 0 3px; }
-.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+.prev:hover, .next:hover { background-color: rgba(200, 161, 83, 0.3); }
 @keyframes fade { from {opacity: .4} to {opacity: 1} }
 
-/* --- Botão WhatsApp Flutuante --- */
 .whatsapp-btn {
-    position: fixed; bottom: 30px; left: 30px; /* Colocado à esquerda para não sobrepor o Toast */
-    width: 60px; height: 60px; background-color: #25d366;
-    border-radius: 50px; text-align: center; font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100;
-    display: flex; justify-content: center; align-items: center;
-    transition: transform 0.3s;
+    position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px;
+    background-color: #25d366; border-radius: 50px; text-align: center; font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 100; display: flex;
+    justify-content: center; align-items: center; transition: transform 0.3s;
 }
 .whatsapp-btn:hover { transform: scale(1.1); }
-.whatsapp-btn img { width: 35px; height: 35px; }
+.whatsapp-btn img { width: 35px; height: 35px; filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));}
 
-/* Modal Styles */
-.modal {
-    display: none; position: fixed; z-index: 10; left: 0; top: 0;
-    width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
-}
+/* ==========================================
+   MODAIS E GAVETA DO CARRINHO (Ajustados para Dark Mode)
+   ========================================== */
+.modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
 .modal-content {
-    background-color: #fefefe; margin: 10% auto; padding: 30px;
-    border-radius: 8px; width: 80%; max-width: 500px; text-align: center;
-    position: relative; animation: fadeIn 0.3s;
+    background-color: var(--card-bg); margin: 10% auto; padding: 30px; border-radius: 8px;
+    width: 80%; max-width: 500px; text-align: center; position: relative; animation: fadeIn 0.3s; border: 1px solid var(--accent-color);
 }
 .modal-content img { max-width: 100%; border-radius: 8px; margin-bottom: 20px; }
-.close-btn {
-    position: absolute; top: 10px; right: 20px; color: #aaa;
-    font-size: 28px; font-weight: bold; cursor: pointer;
-}
-.close-btn:hover { color: #000; }
-
+.close-btn { position: absolute; top: 10px; right: 20px; color: #888; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-btn:hover { color: var(--accent-color); }
 @keyframes fadeIn { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
 
-/* Toast (Notificação) */
+.cart-sidebar {
+    position: fixed; top: 0; right: -400px; width: 350px; height: 100vh;
+    background-color: var(--card-bg); box-shadow: -5px 0 15px rgba(0,0,0,0.5); z-index: 100;
+    transition: right 0.3s ease-in-out; display: flex; flex-direction: column; border-left: 1px solid var(--card-border);
+}
+.cart-sidebar.open { right: 0; }
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
+    z-index: 99; visibility: hidden; opacity: 0; transition: 0.3s ease;
+}
+.cart-overlay.open { visibility: visible; opacity: 1; }
+
+.cart-sidebar-header { padding: 20px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; }
+.cart-sidebar-header h2 { margin: 0; font-size: 20px; font-weight: 400; color: var(--text-light); }
+.cart-items { padding: 20px; flex-grow: 1; overflow-y: auto; }
+.cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; }
+.cart-item-info h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--text-light); }
+.cart-item-price { color: var(--accent-color); font-weight: 600; font-size: 14px; }
+.btn-remover { background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 12px; font-weight: bold; }
+.btn-remover:hover { text-decoration: underline; }
+.cart-sidebar-footer { padding: 20px; border-top: 1px solid var(--card-border); background: #222; }
+.cart-summary-total { font-size: 18px; font-weight: 600; margin-bottom: 15px; text-align: right; color: var(--text-light); }
+
 .toast {
-    visibility: hidden; min-width: 250px; background-color: var(--accent-color);
-    color: #fff; text-align: center; border-radius: 4px; padding: 16px;
-    position: fixed; z-index: 20; right: 30px; bottom: 30px; font-weight: 600;
+    visibility: hidden; min-width: 250px; background-color: var(--accent-color); color: #111;
+    text-align: center; border-radius: 4px; padding: 16px; position: fixed; z-index: 20;
+    right: 30px; bottom: 30px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 .toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-
-@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
