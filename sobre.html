@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Catálogo de Joias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos específicos só para esta página */
+        .sobre-container {
+            max-width: 800px; margin: 60px auto; padding: 40px;
+            background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            line-height: 1.8; text-align: justify;
+        }
+        .sobre-container h1 { text-align: center; color: var(--accent-color); margin-bottom: 30px; }
+        .sobre-container img { width: 100%; border-radius: 8px; margin-bottom: 20px; }
+        .btn-voltar {
+            display: inline-block; margin-top: 30px; text-decoration: none;
+            background-color: var(--primary-color); color: #fff;
+            padding: 10px 20px; border-radius: 4px; font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-$END$
+
+    <header>
+        <div class="logo">Sua Marca</div>
+        <nav class="top-nav">
+            <a href="index.html">Página Inicial</a>
+            <a href="#" onclick="compartilharCatalogo()">Compartilhar <span style="font-size: 12px;">🔗</span></a>
+        </nav>
+        <div class="cart-info" onclick="openCart()" style="cursor: pointer;">
+            🛒 Carrinho (<span id="cartCount">0</span>) | R$ <span id="cartTotal">0,00</span>
+        </div>
+    </header>
+
+    <div class="sobre-container">
+        <h1>A Nossa História</h1>
+        <img src="https://images.unsplash.com/photo-1573408301145-b98c41441628?auto=format&fit=crop&w=800&q=80" alt="Equipa a trabalhar com joias">
+        <p>Bem-vindo à <strong>Sua Marca</strong>. Somos especialistas na venda de Prata 925, trazendo até si as peças mais sofisticadas e duradouras do mercado.</p>
+        <p>A nossa missão é oferecer excelência e brilho a quem procura revender joias com garantia de qualidade. Trabalhamos diretamente com os melhores fabricantes para garantir que cada anel, colar ou pulseira chega às suas mãos em perfeitas condições.</p>
+        <p>O nosso compromisso é com a sua satisfação. Explore o nosso catálogo e descubra a diferença de trabalhar com peças de alto padrão.</p>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="btn-voltar">Voltar ao Catálogo</a>
+        </div>
+    </div>
+
+    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2>Seu Carrinho</h2>
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-sidebar-footer">
+            <div class="cart-summary-total">Total: R$ <span id="sidebarTotal">0,00</span></div>
+            <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

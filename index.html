@@ -13,7 +13,7 @@
         <div class="logo">Sua Marca</div>
 
         <nav class="top-nav">
-            <a href="#" onclick="abrirSobreNos()">Sobre nós</a>
+            <a href="sobre.html">Sobre nós</a>
             <a href="#" onclick="compartilharCatalogo()">Compartilhar <span style="font-size: 12px;">🔗</span></a>
         </nav>
 
@@ -21,6 +21,19 @@
             🛒 Carrinho (<span id="cartCount">0</span>) | R$ <span id="cartTotal">0,00</span>
         </div>
     </header>
+
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1200&h=400&q=80" alt="Nova Coleção Prata">
+            <div class="carousel-text">Nova Coleção de Prata 925</div>
+        </div>
+        <div class="carousel-slide">
+            <img src="https://versalejoias.com/cdn/shop/files/Anel_de_Noivado_Tran_ado_Banhado_em_Ouro_18k_Versale.jpg?v=1772711856&width=1000" alt="Anéis de Noivado">
+            <div class="carousel-text">Brilho que apaixona</div>
+        </div>
+        <a class="prev" onclick="mudarSlide(-1)">&#10094;</a>
+        <a class="next" onclick="mudarSlide(1)">&#10095;</a>
+    </div>
 
     <div class="filter-section" style="margin-top: 20px;">
         <div class="search-container">
@@ -103,7 +116,9 @@
             <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
         </div>
     </div>
-
+    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20joias." class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
     <script src="js/script.js"></script>
 </body>
 </html>

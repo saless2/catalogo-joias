@@ -141,6 +141,40 @@ header {
     border-color: #000; outline: 1px solid #000; color: #000;
 }
 
+/* --- Banner Rotativo (Carrossel) --- */
+.carousel-container {
+    max-width: 1200px; margin: 20px auto; position: relative;
+    border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.carousel-slide { display: none; position: relative; }
+.carousel-slide.active { display: block; animation: fade 1s; }
+.carousel-slide img { width: 100%; height: 350px; object-fit: cover; display: block; filter: brightness(0.8); }
+.carousel-text {
+    position: absolute; bottom: 40px; left: 40px; color: #fff;
+    font-size: 28px; font-weight: 600; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+.prev, .next {
+    cursor: pointer; position: absolute; top: 50%; width: auto;
+    padding: 16px; margin-top: -22px; color: white; font-weight: bold;
+    font-size: 18px; transition: 0.6s ease; border-radius: 0 3px 3px 0;
+    user-select: none; background-color: rgba(0,0,0,0.3);
+}
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+@keyframes fade { from {opacity: .4} to {opacity: 1} }
+
+/* --- Botão WhatsApp Flutuante --- */
+.whatsapp-btn {
+    position: fixed; bottom: 30px; left: 30px; /* Colocado à esquerda para não sobrepor o Toast */
+    width: 60px; height: 60px; background-color: #25d366;
+    border-radius: 50px; text-align: center; font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100;
+    display: flex; justify-content: center; align-items: center;
+    transition: transform 0.3s;
+}
+.whatsapp-btn:hover { transform: scale(1.1); }
+.whatsapp-btn img { width: 35px; height: 35px; }
+
 /* Modal Styles */
 .modal {
     display: none; position: fixed; z-index: 10; left: 0; top: 0;
