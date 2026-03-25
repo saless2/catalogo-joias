@@ -113,6 +113,34 @@ header {
 .cart-sidebar-footer { padding: 20px; border-top: 1px solid #eaeaea; background: #f9f9f9; }
 .cart-summary-total { font-size: 18px; font-weight: 600; margin-bottom: 15px; text-align: right; }
 
+/* --- Navegação no Header --- */
+.top-nav { display: flex; gap: 20px; }
+.top-nav a { text-decoration: none; color: var(--primary-color); font-weight: 600; font-size: 14px; transition: 0.2s; }
+.top-nav a:hover { color: var(--accent-color); }
+
+/* --- Seção de Filtros (Pílulas) --- */
+.filter-section { max-width: 1200px; margin: 20px auto; padding: 0 20px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+
+.search-container { width: 100%; max-width: 600px; }
+.search-container .search-bar { width: 100%; box-sizing: border-box; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; background: #fff; font-family: 'Montserrat', sans-serif; outline: none; transition: box-shadow 0.3s; }
+.search-container .search-bar:focus { box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+.filter-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
+
+.filter-btn {
+    background-color: #fff; border: 1px solid #eaeaea; color: #333;
+    padding: 10px 20px; border-radius: 30px; cursor: pointer;
+    font-size: 13px; font-weight: 600; transition: all 0.2s ease;
+    text-transform: uppercase; font-family: 'Montserrat', sans-serif;
+}
+
+.filter-btn:hover { border-color: #aaa; }
+
+/* Visual da pílula selecionada (igual ao print da sua imagem) */
+.filter-btn.active {
+    border-color: #000; outline: 1px solid #000; color: #000;
+}
+
 /* Modal Styles */
 .modal {
     display: none; position: fixed; z-index: 10; left: 0; top: 0;

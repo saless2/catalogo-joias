@@ -11,25 +11,37 @@
 
     <header>
         <div class="logo">Sua Marca</div>
-        <input type="text" class="search-bar" placeholder="Buscar joias...">
+
+        <nav class="top-nav">
+            <a href="#" onclick="abrirSobreNos()">Sobre nós</a>
+            <a href="#" onclick="compartilharCatalogo()">Compartilhar <span style="font-size: 12px;">🔗</span></a>
+        </nav>
+
         <div class="cart-info" onclick="openCart()" style="cursor: pointer; transition: color 0.3s;">
             🛒 Carrinho (<span id="cartCount">0</span>) | R$ <span id="cartTotal">0,00</span>
         </div>
     </header>
 
+    <div class="filter-section" style="margin-top: 20px;">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Pesquisar joias..." onkeyup="pesquisarProdutos()">
+        </div>
+    </div>
+
     <div class="container">
         <h2 class="section-title">Lançamentos em Prata 925</h2>
 
-        <div class="grid">
-            <div class="card">
+        <div class="grid" id="productGrid">
+
+            <div class="card" data-category="aneis" data-nome="Anel Solitário Cravejado">
                 <img src="https://images.tcdn.com.br/img/img_prod/1041603/anel_solitario_cravejado_prata_925_3140_1_7193653f2367ae2c0ae6642c6259256c.jpg" alt="Anel Solitário">
-                <button class="btn-visualizar" onclick="openModal('Anel Solitário Cravejado', 89.90, 'https://images.unsplash.com/photo-1605100804763-247f67b2548e?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
+                <button class="btn-visualizar" onclick="openModal('Anel Solitário Cravejado', 89.90, 'https://images.tcdn.com.br/img/img_prod/1041603/anel_solitario_cravejado_prata_925_3140_1_7193653f2367ae2c0ae6642c6259256c.jpg')">Visualização Rápida</button>
                 <h3 class="product-name">Anel Solitário Cravejado</h3>
                 <div class="price">R$ 89,90</div>
                 <button class="btn-comprar" onclick="addToCart('Anel Solitário Cravejado', 89.90)">Comprar</button>
             </div>
 
-            <div class="card">
+            <div class="card" data-category="brincos" data-nome="Brinco Argola Lisa">
                 <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" alt="Brinco Argola">
                 <button class="btn-visualizar" onclick="openModal('Brinco Argola Lisa', 45.00, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
                 <h3 class="product-name">Brinco Argola Lisa</h3>
@@ -37,7 +49,7 @@
                 <button class="btn-comprar" onclick="addToCart('Brinco Argola Lisa', 45.00)">Comprar</button>
             </div>
 
-            <div class="card">
+            <div class="card" data-category="colares" data-nome="Colar Ponto de Luz">
                 <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Colar Ponto de Luz">
                 <button class="btn-visualizar" onclick="openModal('Colar Ponto de Luz', 110.50, 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
                 <h3 class="product-name">Colar Ponto de Luz</h3>
@@ -45,17 +57,24 @@
                 <button class="btn-comprar" onclick="addToCart('Colar Ponto de Luz', 110.50)">Comprar</button>
             </div>
 
-            <div class="card">
+            <div class="card" data-category="pulseiras" data-nome="Pulseira Riviera Prata">
                 <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Pulseira Riviera">
                 <button class="btn-visualizar" onclick="openModal('Pulseira Riviera Prata', 199.90, 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80')">Visualização Rápida</button>
                 <h3 class="product-name">Pulseira Riviera Prata</h3>
                 <div class="price">R$ 199,90</div>
                 <button class="btn-comprar" onclick="addToCart('Pulseira Riviera Prata', 199.90)">Comprar</button>
             </div>
-        </div>
-    </div>
 
-    <div id="productModal" class="modal">
+        </div> <div class="filter-pills" id="filterContainer" style="margin-top: 50px; padding-bottom: 40px;">
+            <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
+            <button class="filter-btn" onclick="filtrarCategoria('aneis', this)">Anéis</button>
+            <button class="filter-btn" onclick="filtrarCategoria('brincos', this)">Brincos</button>
+            <button class="filter-btn" onclick="filtrarCategoria('colares', this)">Colares & Gargantilhas</button>
+            <button class="filter-btn" onclick="filtrarCategoria('pulseiras', this)">Pulseiras</button>
+            <button class="filter-btn" onclick="filtrarCategoria('conjuntos', this)">Conjuntos</button>
+        </div>
+
+    </div> <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalImg" src="" alt="Produto em Destaque">
@@ -66,8 +85,6 @@
     </div>
 
     <div id="toast" class="toast">Item adicionado com sucesso!</div>
-
-    <script src="js/script.js"></script>
 
     <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
 
@@ -86,5 +103,7 @@
             <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
         </div>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

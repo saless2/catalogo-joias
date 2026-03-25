@@ -108,6 +108,60 @@ function finalizePurchase() {
     closeCart();
 }
 
+// --- Novas Funções: Filtro, Pesquisa, Compartilhar e Sobre Nós ---
+
+function filtrarCategoria(categoria, botaoClicado) {
+    // 1. Muda a aparência dos botões (remove o 'active' de todos e põe no clicado)
+    const botoes = document.querySelectorAll('.filter-btn');
+    botoes.forEach(btn => btn.classList.remove('active'));
+    botaoClicado.classList.add('active');
+
+    // 2. Filtra os produtos
+    const produtos = document.querySelectorAll('.card');
+    produtos.forEach(produto => {
+        const categoriaProduto = produto.getAttribute('data-category');
+
+        if (categoria === 'todos' || categoriaProduto === categoria) {
+            produto.style.display = 'block'; // Mostra
+        } else {
+            produto.style.display = 'none'; // Esconde
+        }
+    });
+}
+
+function pesquisarProdutos() {
+    const termo = document.getElementById('searchInput').value.toLowerCase();
+    const produtos = document.querySelectorAll('.card');
+
+    produtos.forEach(produto => {
+        const nomeProduto = produto.getAttribute('data-nome').toLowerCase();
+        // Se o nome digitado estiver contido no nome do produto, mostra. Senão, esconde.
+        if (nomeProduto.includes(termo)) {
+            produto.style.display = 'block';
+        } else {
+            produto.style.display = 'none';
+        }
+    });
+}
+
+function compartilharCatalogo() {
+    // Verifica se o navegador suporta compartilhamento nativo (celulares)
+    if (navigator.share) {
+        navigator.share({
+            title: 'Nosso Catálogo de Joias',
+            text: 'Dá uma olhada nos lançamentos em Prata 925!',
+            url: window.location.href
+        }).catch((error) => console.log('Erro ao compartilhar', error));
+    } else {
+        // Fallback para computadores que não suportam
+        alert('Copie o link para compartilhar com seus clientes:\n\n' + window.location.href);
+    }
+}
+
+function abrirSobreNos() {
+    alert("Nossa História:\n\nSomos especialistas em Prata 925, oferecendo as melhores peças para atacado e revenda com garantia e sofisticação.\n\n(No futuro, podemos transformar isso em uma página inteira!)");
+}
+
 // --- Funções do Modal ---
 function openModal(itemName, itemPrice, imageSrc) {
     const modal = document.getElementById('productModal');
