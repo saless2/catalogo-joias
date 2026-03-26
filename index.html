@@ -10,12 +10,9 @@
 <body>
 
     <header>
-        <header>
-    <a href="index.html" class="logo-link">
-        <img src="img/logo.jpg" alt="Rei da Prata Logo" class="header-logo">
-    </a>
-
-    </header>
+        <a href="index.html" class="logo-link">
+            <img src="img/logo.jpg" alt="Rei da Prata Logo" class="header-logo">
+        </a>
 
         <nav class="top-nav">
             <a href="sobre.html">Sobre nós</a>
@@ -83,7 +80,9 @@
                 <button class="btn-comprar" onclick="addToCart('Pulseira Riviera Prata', 199.90)">Comprar</button>
             </div>
 
-        </div> <div class="filter-pills" id="filterContainer" style="margin-top: 50px; padding-bottom: 40px;">
+        </div>
+
+        <div class="filter-pills" id="filterContainer" style="margin-top: 50px; padding-bottom: 40px;">
             <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
             <button class="filter-btn" onclick="filtrarCategoria('aneis', this)">Anéis</button>
             <button class="filter-btn" onclick="filtrarCategoria('brincos', this)">Brincos</button>
@@ -92,45 +91,44 @@
             <button class="filter-btn" onclick="filtrarCategoria('conjuntos', this)">Conjuntos</button>
         </div>
 
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalImg" src="" alt="Produto em Destaque">
-            <h3 id="modalTitle" class="product-name" style="color: var(--text-light); font-size: 20px;"></h3>
-            <div id="modalPrice" class="price" style="font-size: 24px;"></div>
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <img id="modalImg" src="" alt="Produto em Destaque">
+                <h3 id="modalTitle" class="product-name" style="color: var(--text-light); font-size: 20px;"></h3>
+                <div id="modalPrice" class="price" style="font-size: 24px;"></div>
 
-            <div id="modalOptions" class="modal-options" style="display: none;">
+                <div id="modalOptions" class="modal-options" style="display: none;">
 
-                <div class="option-group">
-                    <label>Cor do Banho:</label>
-                    <div class="color-pills">
-                        <button class="color-btn active" onclick="selecionarCor('Prata', this)" style="background: #e0e0e0;" title="Prata"></button>
-                        <button class="color-btn" onclick="selecionarCor('Dourado', this)" style="background: #D4AF37;" title="Dourado"></button>
-                        <button class="color-btn" onclick="selecionarCor('Rosé', this)" style="background: #b76e79;" title="Rosé"></button>
+                    <div class="option-group">
+                        <label>Cor do Banho:</label>
+                        <div class="color-pills">
+                            <button class="color-btn active" onclick="selecionarCor('Prata', this)" style="background: #e0e0e0;" title="Prata"></button>
+                            <button class="color-btn" onclick="selecionarCor('Dourado', this)" style="background: #D4AF37;" title="Dourado"></button>
+                            <button class="color-btn" onclick="selecionarCor('Rosé', this)" style="background: #b76e79;" title="Rosé"></button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Aro:</label>
+                        <div class="size-grid">
+                            <button class="size-btn" onclick="selecionarTamanho('10', this)">10</button>
+                            <button class="size-btn" onclick="selecionarTamanho('12', this)">12</button>
+                            <button class="size-btn" onclick="selecionarTamanho('14', this)">14</button>
+                            <button class="size-btn" onclick="selecionarTamanho('16', this)">16</button>
+                            <button class="size-btn" onclick="selecionarTamanho('18', this)">18</button>
+                            <button class="size-btn" onclick="selecionarTamanho('20', this)">20</button>
+                            <button class="size-btn" onclick="selecionarTamanho('22', this)">22</button>
+                            <button class="size-btn disabled" title="Sem estoque">24</button>
+                            <button class="size-btn disabled" title="Sem estoque">26</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="option-group">
-                    <label>Aro:</label>
-                    <div class="size-grid">
-                        <button class="size-btn" onclick="selecionarTamanho('10', this)">10</button>
-                        <button class="size-btn" onclick="selecionarTamanho('12', this)">12</button>
-                        <button class="size-btn" onclick="selecionarTamanho('14', this)">14</button>
-                        <button class="size-btn" onclick="selecionarTamanho('16', this)">16</button>
-                        <button class="size-btn" onclick="selecionarTamanho('18', this)">18</button>
-                        <button class="size-btn" onclick="selecionarTamanho('20', this)">20</button>
-                        <button class="size-btn" onclick="selecionarTamanho('22', this)">22</button>
-                        <button class="size-btn disabled" title="Sem estoque">24</button>
-                        <button class="size-btn disabled" title="Sem estoque">26</button>
-                    </div>
-                </div>
+                <button class="btn-comprar" id="modalBtnComprar" style="margin-top: 20px; font-size: 16px;">Adicionar ao Carrinho</button>
             </div>
-
-            <button class="btn-comprar" id="modalBtnComprar" style="margin-top: 20px; font-size: 16px;">Adicionar ao Carrinho</button>
         </div>
-    </div>
-    </div>
-    <a href="https://wa.me/5511966230844?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20joias." class="whatsapp-btn" target="_blank">
+    </div> <a href="https://wa.me/5511966230844?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20joias." class="whatsapp-btn" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
@@ -153,10 +151,6 @@
             <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
         </div>
     </div>
-
-    <button class="btn-whatsapp-final" onclick="enviarParaWhatsAppReal()">
-                Concluir e Enviar para o WhatsApp
-            </button>
 
     <div id="checkoutScreen" class="checkout-screen">
         <div class="checkout-container">
@@ -189,9 +183,12 @@
                 <span id="checkoutTotalValue">R$ 0,00</span>
             </div>
 
-
+            <button class="btn-whatsapp-final" onclick="enviarParaWhatsAppReal()">
+                Concluir e Enviar para o WhatsApp
+            </button>
         </div>
     </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>
