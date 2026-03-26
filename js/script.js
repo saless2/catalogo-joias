@@ -127,7 +127,7 @@ function finalizePurchase() {
         return;
     }
 
-    const numeroWhatsApp = "5511999999999";
+    const numeroWhatsApp = "5511966230844";
 
     // Gerando um "Código de Pedido" aleatório apenas para dar um ar mais profissional
     const codigoPedido = Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
