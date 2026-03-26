@@ -200,15 +200,39 @@ header .header-logo { height: 80px; width: auto; object-fit: contain; border-rad
 .btn-whatsapp-final:hover { background-color: #1ebc59; }
 
 /* ==========================================
-   MODAIS E GAVETA DO CARRINHO (Ajustados para Dark Mode)
+   MODAIS E GAVETA DO CARRINHO (Ajustados para Dark Mode e Mobile)
    ========================================== */
-.modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
-.modal-content {
-    background-color: var(--card-bg); margin: 10% auto; padding: 30px; border-radius: 8px;
-    width: 80%; max-width: 500px; text-align: center; position: relative; animation: fadeIn 0.3s; border: 1px solid var(--accent-color);
+.modal {
+    display: none; position: fixed; z-index: 1000; /* Z-index 1000 para ficar em cima do WhatsApp */
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
 }
-.modal-content img { max-width: 100%; border-radius: 8px; margin-bottom: 20px; }
-.close-btn { position: absolute; top: 10px; right: 20px; color: #888; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto; /* Margem menor no topo para caber melhor no celular */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; max-width: 500px;
+    text-align: center; position: relative;
+    animation: fadeIn 0.3s;
+    border: 1px solid var(--accent-color);
+
+    /* A MÁGICA DA ROLAGEM AQUI: */
+    max-height: 85vh; /* A janela pode ocupar no máximo 85% da altura da tela */
+    overflow-y: auto; /* Se o conteúdo passar disso, ele cria uma rolagem interna! */
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 35vh; /* A foto não pode passar de 35% da tela para deixar as opções visíveis */
+    object-fit: cover; border-radius: 8px; margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute; top: 10px; right: 20px; color: #888;
+    font-size: 28px; font-weight: bold; cursor: pointer; z-index: 2;
+}
 .close-btn:hover { color: var(--accent-color); }
 @keyframes fadeIn { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
 
