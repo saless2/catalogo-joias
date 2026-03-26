@@ -170,7 +170,7 @@ function fecharCheckout() {
 }
 
 function enviarParaWhatsAppReal() {
-    const numeroWhatsApp = "5511999999999";
+    const numeroWhatsApp = "5511966230844";
 
     let mensagem = `*REI DA PRATA | PEDIDO #${codigoPedidoAtual}*\n\n`;
     cartItems.forEach(item => {
