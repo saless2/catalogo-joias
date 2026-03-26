@@ -127,26 +127,35 @@ function finalizePurchase() {
         return;
     }
 
-    // 1. Coloque aqui o número do WhatsApp da loja (com DDI 55 e DDD)
     const numeroWhatsApp = "5511999999999";
 
-    // 2. Começa a montar a mensagem de saudação
-    let mensagem = "Olá, Rei da Prata! Gostaria de finalizar o meu pedido de atacado:\n\n";
+    // Gerando um "Código de Pedido" aleatório apenas para dar um ar mais profissional
+    const codigoPedido = Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
 
-    // 3. Faz um loop no carrinho e adiciona cada item na mensagem
+    // Pegando a data atual
+    const dataAtual = new Date().toLocaleDateString('pt-BR');
+
+    let mensagem = `🛍️ *NOVO PEDIDO DE ATACADO* 🛍️\n\n`;
+    mensagem += `*Status:* Aguardando Confirmação\n`;
+    mensagem += `*Data:* ${dataAtual}\n`;
+    mensagem += `*Código:* ${codigoPedido}\n`;
+    mensagem += `-----------------------------------\n\n`;
+    mensagem += `*SEU PEDIDO:*\n\n`;
+
     cartItems.forEach(item => {
         let subtotalItem = item.price * item.qty;
-        mensagem += `▪️ ${item.qty}x ${item.name} - R$ ${subtotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\n`;
+        // Formatação imitando a lista da foto
+        mensagem += `📦 *${item.name}*\n`;
+        mensagem += `↳ Quantidade: ${item.qty} un.\n`;
+        mensagem += `↳ Subtotal: R$ ${subtotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\n\n`;
     });
 
-    // 4. Adiciona o valor total no final, em negrito (usando os asteriscos do WhatsApp)
-    mensagem += `\n*Valor Total do Pedido: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*`;
+    mensagem += `-----------------------------------\n`;
+    mensagem += `💰 *TOTAL A PAGAR: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*\n`;
 
-    // 5. Transforma o texto em um link válido para a internet e abre o WhatsApp
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
 
-    // 6. Esvazia o carrinho e fecha a gaveta depois de enviar o cliente pro WhatsApp
     cartItems = [];
     updateCart();
     closeCart();
