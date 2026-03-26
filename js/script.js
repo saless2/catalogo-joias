@@ -81,15 +81,35 @@ function selecionarTamanho(tamanho, btn) {
 // LÓGICA DO CARRINHO (ADICIONAR/ATUALIZAR)
 // ==========================================
 function addToCart(itemName, itemPrice, itemImage) {
-    // Validação de segurança
-    if (produtoAtualCategoria === 'aneis' && variacaoTamanho === "") {
-        alert("Por favor, selecione o aro do anel antes de adicionar ao carrinho!");
-        return;
+    // 1. Busca os dados do HTML caso a pessoa clique direto no botão "Comprar" da vitrine
+    const card = document.querySelector(`.card[data-nome="${itemName}"]`);
+    let categoriaDesteItem = "outros";
+
+    if (card) {
+        // Se a imagem veio vazia, ele "rouba" a foto que está na tela
+        if (!itemImage) {
+            itemImage = card.querySelector('img').src;
+        }
+        categoriaDesteItem = card.getAttribute('data-category');
     }
 
-    // Procura se EXATAMENTE a mesma joia (mesma cor e mesmo aro) já está no carrinho
+    // 2. Regra de Negócio: Se for Anel, NÃO DEIXA comprar direto da vitrine sem escolher o aro
+    if (categoriaDesteItem === 'aneis') {
+        if (!variacaoTamanho || variacaoTamanho === "") {
+            alert("Por favor, clique em 'Visualização Rápida' para escolher o aro do anel!");
+            return;
+        }
+    } else {
+        // Se for brinco, colar ou pulseira, o tamanho é sempre Único
+        variacaoTamanho = "Único";
+    }
+
+    // 3. Define a cor padrão caso não tenha sido escolhida
+    let corFinal = variacaoCor ? variacaoCor : "Prata";
+
+    // 4. Adiciona ao carrinho (juntando itens iguais)
     let existingItem = cartItems.find(item =>
-        item.name === itemName && item.color === variacaoCor && item.size === variacaoTamanho
+        item.name === itemName && item.color === corFinal && item.size === variacaoTamanho
     );
 
     if (existingItem) {
@@ -97,9 +117,14 @@ function addToCart(itemName, itemPrice, itemImage) {
     } else {
         cartItems.push({
             name: itemName, price: itemPrice, qty: 1, image: itemImage,
-            color: variacaoCor, size: variacaoTamanho
+            color: corFinal, size: variacaoTamanho
         });
     }
+
+    // 5. Limpa a memória para o próximo clique não puxar o tamanho do item anterior
+    variacaoTamanho = "";
+    variacaoCor = "Prata";
+    produtoAtualCategoria = "";
 
     updateCart();
     showToast();
