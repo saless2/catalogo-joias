@@ -124,6 +124,43 @@
     <a href="https://wa.me/5511966230844?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20joias." class="whatsapp-btn" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
+
+    <div id="checkoutScreen" class="checkout-screen">
+        <div class="checkout-container">
+            <button class="btn-voltar-checkout" onclick="fecharCheckout()">← Voltar ao Catálogo</button>
+
+            <div class="checkout-header">
+                <h2>Acompanhe o status do seu pedido</h2>
+                <div class="checkout-icon">🛍️</div>
+                <h3>Resumo Pronto</h3>
+            </div>
+
+            <div class="checkout-info">
+                <div>
+                    <strong>Status</strong><br>Aguardando Envio
+                </div>
+                <div>
+                    <strong>Data</strong><br><span id="checkoutData"></span>
+                </div>
+                <div>
+                    <strong>Código</strong><br><span id="checkoutCodigo"></span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: #333;">Seu pedido</h3>
+            <div id="checkoutItemsContainer" class="checkout-items-list">
+                </div>
+
+            <div class="checkout-total">
+                <strong>Total a pagar:</strong>
+                <span id="checkoutTotalValue">R$ 0,00</span>
+            </div>
+
+            <button class="btn-whatsapp-final" onclick="enviarParaWhatsAppReal()">
+                Concluir e Enviar para o WhatsApp
+            </button>
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>

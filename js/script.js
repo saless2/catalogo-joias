@@ -18,14 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // LÓGICA DO CARRINHO (ADICIONAR/ATUALIZAR)
 // ==========================================
 function addToCart(itemName, itemPrice) {
-    let existingItem = cartItems.find(item => item.name === itemName);
+    // Busca a imagem do produto clicado no HTML
+    const cards = document.querySelectorAll('.card');
+    let itemImage = '';
+    cards.forEach(card => {
+        if (card.getAttribute('data-nome') === itemName) {
+            itemImage = card.querySelector('img').src;
+        }
+    });
 
+    let existingItem = cartItems.find(item => item.name === itemName);
     if (existingItem) {
         existingItem.qty += 1;
     } else {
-        cartItems.push({ name: itemName, price: itemPrice, qty: 1 });
+        cartItems.push({ name: itemName, price: itemPrice, qty: 1, image: itemImage });
     }
-
     updateCart();
     showToast();
     closeModal();
@@ -121,44 +128,61 @@ function closeCart() {
     document.getElementById('cartOverlay').classList.remove('open');
 }
 
+let codigoPedidoAtual = "";
+
 function finalizePurchase() {
     if (cartItems.length === 0) {
-        alert("Seu carrinho está vazio! Adicione algumas joias primeiro.");
-        return;
+        alert("Seu carrinho está vazio!"); return;
     }
 
-    const numeroWhatsApp = "5511966230844";
+    closeCart(); // Fecha a gavetinha preta
 
-    // Gerando um "Código de Pedido" aleatório apenas para dar um ar mais profissional
-    const codigoPedido = Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
+    // Gera os dados do pedido
+    codigoPedidoAtual = Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(100 + Math.random() * 900);
+    document.getElementById('checkoutCodigo').innerText = codigoPedidoAtual;
+    document.getElementById('checkoutData').innerText = new Date().toLocaleDateString('pt-BR');
+    document.getElementById('checkoutTotalValue').innerText = 'R$ ' + cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
-    // Pegando a data atual
-    const dataAtual = new Date().toLocaleDateString('pt-BR');
-
-    let mensagem = `🛍️ *NOVO PEDIDO DE ATACADO* 🛍️\n\n`;
-    mensagem += `*Status:* Aguardando Confirmação\n`;
-    mensagem += `*Data:* ${dataAtual}\n`;
-    mensagem += `*Código:* ${codigoPedido}\n`;
-    mensagem += `-----------------------------------\n\n`;
-    mensagem += `*SEU PEDIDO:*\n\n`;
+    // Desenha as joias com foto na tela branca
+    const container = document.getElementById('checkoutItemsContainer');
+    container.innerHTML = '';
 
     cartItems.forEach(item => {
-        let subtotalItem = item.price * item.qty;
-        // Formatação imitando a lista da foto
-        mensagem += `📦 *${item.name}*\n`;
-        mensagem += `↳ Quantidade: ${item.qty} un.\n`;
-        mensagem += `↳ Subtotal: R$ ${subtotalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\n\n`;
+        let subtotal = item.price * item.qty;
+        container.innerHTML += `
+            <div class="checkout-item">
+                <img src="${item.image || 'https://via.placeholder.com/60'}" alt="${item.name}">
+                <div class="checkout-item-details">
+                    <p class="checkout-item-name">${item.name}</p>
+                    <span class="checkout-item-qty">(${item.qty} itens)</span>
+                </div>
+                <div class="checkout-item-price">R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
+            </div>
+        `;
     });
 
-    mensagem += `-----------------------------------\n`;
-    mensagem += `💰 *TOTAL A PAGAR: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*\n`;
+    // Mostra a tela bonita
+    document.getElementById('checkoutScreen').style.display = 'block';
+}
+
+function fecharCheckout() {
+    document.getElementById('checkoutScreen').style.display = 'none';
+}
+
+function enviarParaWhatsAppReal() {
+    const numeroWhatsApp = "5511999999999";
+
+    let mensagem = `*REI DA PRATA | PEDIDO #${codigoPedidoAtual}*\n\n`;
+    cartItems.forEach(item => {
+        mensagem += `▪️ ${item.qty}x ${item.name}\n`;
+    });
+    mensagem += `\n*TOTAL: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*\n\n`;
+    mensagem += `_Pedido gerado pelo catálogo digital._`;
 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
 
-    cartItems = [];
-    updateCart();
-    closeCart();
+    cartItems = []; updateCart(); fecharCheckout();
 }
 
 // ==========================================
