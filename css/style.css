@@ -184,3 +184,56 @@ header .header-logo { height: 80px; width: auto; object-fit: contain; border-rad
     right: 30px; bottom: 30px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 .toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+
+/* ==========================================
+   RESPONSIVIDADE (MOBILE - TELAS ATÉ 768px)
+   ========================================== */
+@media (max-width: 768px) {
+    /* 1. Cabeçalho e Navegação: Empilha tudo no centro */
+    header {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+        text-align: center;
+    }
+    header .header-logo { height: 60px; } /* Logo um pouco menor */
+
+    .top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* 2. Banner Rotativo: Reduz a altura da imagem e do texto */
+    .carousel-slide img { height: 200px; }
+    .carousel-text { font-size: 18px; bottom: 20px; left: 20px; }
+    .prev, .next { padding: 10px; font-size: 14px; }
+
+    /* 3. Grade de Produtos: Força 2 itens por linha */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    /* 4. Ajustes finos no Card para caber em telas pequenas */
+    .card { padding: 10px; }
+    .card img { height: 140px; }
+    .product-name { font-size: 13px; margin: 8px 0; }
+    .price { font-size: 15px; margin-bottom: 10px; }
+    .btn-comprar { padding: 8px 10px; font-size: 12px; }
+    .btn-visualizar { font-size: 11px; padding: 6px; width: 90%; }
+
+    /* 5. Barra de Pesquisa e Pílulas */
+    .search-container .search-bar { padding: 10px 15px; font-size: 14px; }
+    .filter-btn { padding: 8px 12px; font-size: 11px; }
+
+    /* 6. Gaveta do Carrinho: Ocupa a tela toda no celular para não quebrar */
+    .cart-sidebar { width: 100%; right: -100%; }
+    .cart-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .cart-qty-controls { margin-left: 0; }
+    .btn-remover { align-self: flex-end; margin-top: -30px; }
+
+    /* 7. Modal de Visualização Rápida */
+    .modal-content { width: 90%; padding: 20px; margin: 20% auto; }
+}
