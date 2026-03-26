@@ -173,16 +173,21 @@ function enviarParaWhatsAppReal() {
     const numeroWhatsApp = "5511966230844";
 
     let mensagem = `*REI DA PRATA | PEDIDO #${codigoPedidoAtual}*\n\n`;
+
     cartItems.forEach(item => {
-        mensagem += `▪️ ${item.qty}x ${item.name}\n`;
+        // Usando hífen e negrito (*), caracteres universais que nunca quebram
+        mensagem += `- *${item.qty}x* ${item.name}\n`;
     });
+
     mensagem += `\n*TOTAL: R$ ${cartTotalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}*\n\n`;
     mensagem += `_Pedido gerado pelo catálogo digital._`;
 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
 
-    cartItems = []; updateCart(); fecharCheckout();
+    cartItems = [];
+    updateCart();
+    fecharCheckout();
 }
 
 // ==========================================
