@@ -294,3 +294,38 @@ header .header-logo { height: 80px; width: auto; object-fit: contain; border-rad
     /* 7. Modal de Visualização Rápida */
     .modal-content { width: 90%; padding: 20px; margin: 20% auto; }
 }
+
+/* ==========================================
+   VARIAÇÕES DE PRODUTO (COR E TAMANHO)
+   ========================================== */
+.modal-options {
+    text-align: left; margin: 20px 0; padding: 15px 0;
+    border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);
+}
+.option-group { margin-bottom: 15px; }
+.option-group label { display: block; font-size: 12px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
+
+/* Botões de Cor (Bolinhas) */
+.color-pills { display: flex; gap: 10px; }
+.color-btn {
+    width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent;
+    cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.color-btn.active { border-color: #fff; transform: scale(1.1); outline: 2px solid var(--accent-color); outline-offset: 2px;}
+
+/* Grid de Tamanhos (Aros - Inspirado no Print) */
+.size-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.size-btn {
+    background: transparent; border: 1px solid #555; color: var(--text-light);
+    width: 45px; height: 45px; display: flex; justify-content: center; align-items: center;
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.2s; border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+.size-btn:hover:not(.disabled) { border-color: var(--accent-color); }
+.size-btn.active { background: var(--accent-color); color: #111; border-color: var(--accent-color); }
+
+/* Tamanhos sem estoque (Cinza e bloqueados) */
+.size-btn.disabled {
+    color: #555; border-color: #333; cursor: not-allowed; position: relative;
+    background: repeating-linear-gradient(45deg, #222, #222 5px, #2a2a2a 5px, #2a2a2a 10px);
+}

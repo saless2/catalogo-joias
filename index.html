@@ -92,34 +92,43 @@
             <button class="filter-btn" onclick="filtrarCategoria('conjuntos', this)">Conjuntos</button>
         </div>
 
-    </div> <div id="productModal" class="modal">
+    <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalImg" src="" alt="Produto em Destaque">
-            <h3 id="modalTitle" class="product-name"></h3>
-            <div id="modalPrice" class="price"></div>
-            <button class="btn-comprar" id="modalBtnComprar">Adicionar ao Carrinho</button>
+            <h3 id="modalTitle" class="product-name" style="color: var(--text-light); font-size: 20px;"></h3>
+            <div id="modalPrice" class="price" style="font-size: 24px;"></div>
+
+            <div id="modalOptions" class="modal-options" style="display: none;">
+
+                <div class="option-group">
+                    <label>Cor do Banho:</label>
+                    <div class="color-pills">
+                        <button class="color-btn active" onclick="selecionarCor('Prata', this)" style="background: #e0e0e0;" title="Prata"></button>
+                        <button class="color-btn" onclick="selecionarCor('Dourado', this)" style="background: #D4AF37;" title="Dourado"></button>
+                        <button class="color-btn" onclick="selecionarCor('Rosé', this)" style="background: #b76e79;" title="Rosé"></button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label>Aro:</label>
+                    <div class="size-grid">
+                        <button class="size-btn" onclick="selecionarTamanho('10', this)">10</button>
+                        <button class="size-btn" onclick="selecionarTamanho('12', this)">12</button>
+                        <button class="size-btn" onclick="selecionarTamanho('14', this)">14</button>
+                        <button class="size-btn" onclick="selecionarTamanho('16', this)">16</button>
+                        <button class="size-btn" onclick="selecionarTamanho('18', this)">18</button>
+                        <button class="size-btn" onclick="selecionarTamanho('20', this)">20</button>
+                        <button class="size-btn" onclick="selecionarTamanho('22', this)">22</button>
+                        <button class="size-btn disabled" title="Sem estoque">24</button>
+                        <button class="size-btn disabled" title="Sem estoque">26</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-comprar" id="modalBtnComprar" style="margin-top: 20px; font-size: 16px;">Adicionar ao Carrinho</button>
         </div>
     </div>
-
-    <div id="toast" class="toast">Item adicionado com sucesso!</div>
-
-    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
-
-    <div id="cartSidebar" class="cart-sidebar">
-        <div class="cart-sidebar-header">
-            <h2>Seu Carrinho</h2>
-            <span class="close-btn" onclick="closeCart()">&times;</span>
-        </div>
-
-        <div class="cart-items" id="cartItemsContainer">
-            <p style="text-align: center; color: #888; margin-top: 20px;">Seu carrinho está vazio.</p>
-        </div>
-
-        <div class="cart-sidebar-footer">
-            <div class="cart-summary-total">Total: R$ <span id="sidebarTotal">0,00</span></div>
-            <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
-        </div>
     </div>
     <a href="https://wa.me/5511966230844?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20joias." class="whatsapp-btn" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
