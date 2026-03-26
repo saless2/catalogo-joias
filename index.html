@@ -134,6 +134,30 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
+    <div id="toast" class="toast">Item adicionado com sucesso!</div>
+
+    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2>Seu Carrinho</h2>
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+        </div>
+
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align: center; color: #888; margin-top: 20px;">Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="cart-sidebar-footer">
+            <div class="cart-summary-total">Total: R$ <span id="sidebarTotal">0,00</span></div>
+            <button class="btn-comprar" onclick="finalizePurchase()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <button class="btn-whatsapp-final" onclick="enviarParaWhatsAppReal()">
+                Concluir e Enviar para o WhatsApp
+            </button>
+
     <div id="checkoutScreen" class="checkout-screen">
         <div class="checkout-container">
             <button class="btn-voltar-checkout" onclick="fecharCheckout()">← Voltar ao Catálogo</button>
@@ -165,9 +189,7 @@
                 <span id="checkoutTotalValue">R$ 0,00</span>
             </div>
 
-            <button class="btn-whatsapp-final" onclick="enviarParaWhatsAppReal()">
-                Concluir e Enviar para o WhatsApp
-            </button>
+
         </div>
     </div>
     <script src="js/script.js"></script>
